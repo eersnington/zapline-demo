@@ -1,10 +1,17 @@
+import { GoogleTagManager } from "@next/third-parties/google";
 import { Inter } from "next/font/google";
+import { NowPlayingContextProvider } from "react-nowplaying";
 import classNames from "classnames";
 import localFont from "next/font/local";
+import Script from "next/script";
 
-import { DeepgramContextProvider } from "./context/DeepgramContextProvider";
-import { MicrophoneContextProvider } from "./context/MicrophoneContextProvider";
+import { DeepgramContextProvider } from "./context/Deepgram";
+import { MessageMetadataContextProvider } from "./context/MessageMetadata";
+import { MicrophoneContextProvider } from "./context/Microphone";
+import { AudioStoreContextProvider } from "./context/AudioStore";
+import { ToastContextProvider } from "./context/Toast";
 
+import 'react-toastify/dist/ReactToastify.css';
 import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
@@ -45,9 +52,28 @@ export default function RootLayout({
           inter.className
         )}`}
       >
-        <MicrophoneContextProvider>
-          <DeepgramContextProvider>{children}</DeepgramContextProvider>
-        </MicrophoneContextProvider>
+        <ToastContextProvider>
+          <MicrophoneContextProvider>
+            <AudioStoreContextProvider>
+              <NowPlayingContextProvider>
+                <MessageMetadataContextProvider>
+                  <DeepgramContextProvider>{children}</DeepgramContextProvider>
+                </MessageMetadataContextProvider>
+              </NowPlayingContextProvider>
+            </AudioStoreContextProvider>
+          </MicrophoneContextProvider>
+        </ToastContextProvider>
+        <GoogleTagManager gtmId="GTM-5R73N627" />
+        <Script
+          id="github-buttons"
+          async
+          defer
+          src="https://buttons.github.io/buttons.js"
+        ></Script>
+        <Script id="heap-analytics">
+          {`window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=document.createElement("script");r.type="text/javascript",r.async=!0,r.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(r,a);for(var n=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],o=0;o<p.length;o++)heap[p[o]]=n(p[o])};`}
+          {`heap.load("765739241");`}
+        </Script>
       </body>
     </html>
   );

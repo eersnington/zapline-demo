@@ -1,23 +1,31 @@
 "use client";
 
 import Image from "next/image";
-import App from "./components/App";
-import { XIcon } from "./components/icons/XIcon";
-import { LinkedInIcon } from "./components/icons/LinkedInIcon";
-import { FacebookIcon } from "./components/icons/FacebookIcon";
 import GitHubButton from "react-github-btn";
 
-const Home = () => {
+export const runtime = "edge";
+import { init } from "@fullstory/browser";
+import { useEffect } from "react";
+import { XIcon } from "./components/icons/XIcon";
+import { FacebookIcon } from "./components/icons/FacebookIcon";
+import { LinkedInIcon } from "./components/icons/LinkedInIcon";
+import Conversation from "./components/Conversation";
+
+export default function Home() {
+  useEffect(() => {
+    init({ orgId: "5HWAN" });
+  }, []);
+
   return (
     <>
       <div className="h-full overflow-hidden">
         {/* height 4rem */}
         <div className="bg-gradient-to-b from-black/50 to-black/10 backdrop-blur-[2px] h-[4rem] flex items-center">
-          <header className="mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8 flex items-center justify-between">
+          <header className="mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8 flex items-center justify-between pt-4 md:pt-0 gap-2">
             <div>
               <a className="flex items-center" href="/">
                 <Image
-                  className="w-auto h-8 max-w-[12.5rem] sm:max-w-none"
+                  className="w-40 md:w-auto h-8 max-w-[12.5rem] sm:max-w-none"
                   src="/deepgram.svg"
                   alt="Deepgram Logo"
                   width={0}
@@ -26,14 +34,14 @@ const Home = () => {
                 />
               </a>
             </div>
-            <div className="flex items-center gap-6 text-sm">
+            <div className="flex items-center justify-center md:gap-6 text-sm">
               <span className="mt-1">
                 <GitHubButton
-                  href="https://github.com/deepgram-starters/nextjs-live-transcription"
+                  href="https://github.com/deepgram-devs/deepgram-conversational-demo"
                   data-color-scheme="no-preference: light; light: light; dark: light;"
                   data-size="large"
                   data-show-count="true"
-                  aria-label="Star deepgram-starters/nextjs-live-transcription on GitHub"
+                  aria-label="Star deepgram-devs/deepgram-conversational-demo on GitHub"
                 >
                   Star
                 </GitHubButton>
@@ -53,12 +61,12 @@ const Home = () => {
         </div>
 
         {/* height 100% minus 8rem */}
-        <main className="mx-auto px-4 md:px-6 lg:px-8 h-[calc(100%-4rem)] -mb-[4rem]">
-          <App />
+        <main className="mx-auto max-w-7xl  px-4 md:px-6 lg:px-8 h-[calc(100%-8rem)]">
+          <Conversation />
         </main>
 
         {/* height 4rem */}
-        <div className="bg-black/80 h-[4rem] flex items-center absolute w-full">
+        <div className=" backdrop-blur-[2px] h-[4rem] flex items-center">
           <footer className="mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8 flex items-center justify-center gap-4 md:text-xl font-inter text-[#8a8a8e]">
             <span className="text-base text-[#4e4e52]">share it</span>
             <a
@@ -121,6 +129,4 @@ const Home = () => {
       </div>
     </>
   );
-};
-
-export default Home;
+}
