@@ -10,7 +10,7 @@ interface VoicebotUIProps {
 const VoicebotUI: React.FC<VoicebotUIProps> = ({ isOpen, onClose }) => {
   return (
     <div
-      className={`rounded-lg fixed bottom-1 right-1 w-full sm:w-96 md:w-[500px] lg:w-[800px] h-[600px] bg-black text-white transition-all duration-300 ease-in-out ${
+      className={`rounded-lg fixed bottom-1 right-1 w-full sm:w-96 md:w-[500px] lg:w-[500px] h-[600px] bg-black text-white transition-all duration-300 ease-in-out ${
         isOpen ? "translate-y-0" : "translate-y-full"
       }`}
     >

@@ -41,6 +41,7 @@ export async function GET(request: NextRequest) {
     });
 
   if (newKeyError) {
+    console.log(newKeyError);
     return NextResponse.json(newKeyError);
   }
 

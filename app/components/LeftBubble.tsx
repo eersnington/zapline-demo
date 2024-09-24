@@ -3,13 +3,12 @@ import { Message } from "ai/react";
 import { MessageAudio } from "./MessageAudio";
 import { MessageHeader } from "./MessageHeader";
 import { MessageMeta } from "./MessageMeta";
-import { TextContent } from "./TextContext";
 import { TextContentAI } from "./TextContextAI";
 
 export const LeftBubble = ({ message }: { message: Message }) => {
   return (
     <>
-      <div className="col-start-1 col-end-13 sm:col-end-11 md:col-end-9 lg:col-end-8 xl:col-end-7 md:px-3 pt-3">
+      <div className="col-start-1 col-end-13 sm:col-end-11 md:col-end-9  md:px-3 pt-3">
         <div className="flex items-start gap-2 flex-col md:flex-row">
           <div className="flex items-start gap-2 flex-col md:flex-row max-w-full md:max-w-none">
             <div className="min-w-12 text-white shrink-0">
