@@ -12,8 +12,7 @@ import { useSubmit } from "../lib/hooks/useSubmit";
 
 // Better to use library, a lot of complexity is involved
 // in building the resizable input
-import TextareaAutosize from 'react-textarea-autosize';
-
+import TextareaAutosize from "react-textarea-autosize";
 
 export const Controls = ({
   input,
@@ -27,12 +26,12 @@ export const Controls = ({
   messages: Message[];
 }) => {
   const { startMicrophone, stopMicrophone, microphoneOpen } = useMicrophone();
-  const { formRef, onKeyDown } = useSubmit()
+  const { formRef, onKeyDown } = useSubmit();
 
-  useEffect(() => { 
+  useEffect(() => {
     startMicrophone();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   const microphoneToggle = useCallback(
     async (e: Event) => {
@@ -53,20 +52,20 @@ export const Controls = ({
     (e: any) => {
       handleSubmit(e);
       stopAudio();
-      e.target.value = '';
-      handleInputChange(e)
+      e.target.value = "";
+      handleInputChange(e);
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [stopAudio, handleSubmit]
   );
 
   return (
     <form onSubmit={submitter} ref={formRef}>
-      <div className="relative">
-        <div className="absolute w-full -top-[4.5rem] py-4 flex justify-between">
+      <div className="relative p-4">
+        {/* <div className="absolute w-full -top-[4.5rem] py-4 flex justify-between">
           <Settings />
           <Download messages={messages} />
-        </div>
+        </div> */}
         <div className="flex bg-[#101014] rounded-full">
           <span
             className={`rounded-tl-[2rem] rounded-bl-[2rem] ps-0.5 py-0.5 ${
@@ -90,7 +89,10 @@ export const Controls = ({
                   </div>
                 )}
                 <div className="w-auto flex items-center justify-center shrink-0">
-                  <MicrophoneIcon micOpen={microphoneOpen} className="h-5 md:h-6" />
+                  <MicrophoneIcon
+                    micOpen={microphoneOpen}
+                    className="h-5 md:h-6"
+                  />
                 </div>
                 {/* <span>
                 {microphoneOpen ? (
@@ -116,13 +118,14 @@ export const Controls = ({
                 onChange={handleInputChange}
               />
             </div>
-
           </div>
 
           <div className="inline h-auto rounded-tr-[2rem] rounded-br-[2rem] bg-gradient-to-l to-[#13EF93]/50 from-[#149AFB]/80 pe-0.5 py-0.5">
             <Tooltip showArrow content="Send a message.">
-              <button type="submit" className="w-16 md:w-24 h-full py-2 md:py-4 px-2 rounded-tr-[2rem] rounded-br-[2rem] font-bold bg-[#101014] text-light-900 text-sm sm:text-base flex items-center justify-center">
-                {/* <span>Send text</span> */}
+              <button
+                type="submit"
+                className="w-16 md:w-24 h-full py-2 md:py-4 px-2 rounded-tr-[2rem] rounded-br-[2rem] font-bold bg-[#101014] text-light-900 text-sm sm:text-base flex items-center justify-center"
+              >
                 <SendIcon className="w-5 md:w-6" />
               </button>
             </Tooltip>

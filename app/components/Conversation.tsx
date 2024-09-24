@@ -33,7 +33,11 @@ import { useAudioStore } from "../context/AudioStore";
  * Conversation element that contains the conversational AI app.
  * @returns {JSX.Element}
  */
-export default function Conversation(): JSX.Element {
+export default function Conversation({
+  isOpen,
+}: {
+  isOpen: boolean;
+}): JSX.Element {
   /**
    * Custom context providers
    */
@@ -273,6 +277,12 @@ export default function Conversation(): JSX.Element {
   ]);
 
   useEffect(() => {
+    if (isOpen) {
+      startConversation();
+    }
+  }, [isOpen, startConversation]);
+
+  useEffect(() => {
     const onTranscript = (data: LiveTranscriptionEvent) => {
       let content = utteranceText(data);
 
@@ -452,7 +462,10 @@ export default function Conversation(): JSX.Element {
                 >
                   <div className="grid grid-cols-12 overflow-x-auto gap-y-2">
                     {initialLoad ? (
-                      <InitialLoad fn={startConversation} connecting={!connection} />
+                      <InitialLoad
+                        fn={startConversation}
+                        connecting={!connection}
+                      />
                     ) : (
                       <>
                         {chatMessages.length > 0 &&
