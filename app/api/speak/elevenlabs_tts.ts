@@ -1,15 +1,10 @@
 import { Message } from "ai";
 import { NextRequest, NextResponse } from "next/server";
 
-/**
- * Return a stream from the API
- * @param {NextRequest} req - The HTTP request
- * @returns {Promise<NextResponse>} A NextResponse with the streamable response
- */
 export async function POST(req: NextRequest) {
-  // gotta use the request object to invalidate the cache every request :vomit:
   const url = req.url;
-  const model = req.nextUrl.searchParams.get("model") ?? "aura-asteria-en";
+  const voiceId =
+    req.nextUrl.searchParams.get("voice_id") ?? "mCQMfsqGDT6IDkEKR20a"; // Default voice ID : 21m00Tcm4TlvDq8ikWAM :: jeevan : mCQMfsqGDT6IDkEKR20a
   const message: Message = await req.json();
   const start = Date.now();
 
@@ -30,25 +25,30 @@ export async function POST(req: NextRequest) {
       }
     );
 
-  return await fetch(
-    `${process.env.DEEPGRAM_STT_DOMAIN}/v1/speak?model=${model}`,
-    {
-      method: "POST",
-      body: JSON.stringify({ text }),
-      headers: {
-        "Content-Type": `application/json`,
-        Authorization: `token ${process.env.DEEPGRAM_API_KEY || ""}`,
-        "X-DG-Referrer": url,
+  const elevenLabsUrl = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`;
+
+  return await fetch(elevenLabsUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Xi-Api-Key": process.env.ELEVENLABS_API_KEY || "",
+    },
+    body: JSON.stringify({
+      text,
+      model_id: "eleven_multilingual_v2",
+      voice_settings: {
+        stability: 0.5,
+        similarity_boost: 0.5,
       },
-    }
-  )
+    }),
+  })
     .then(async (response) => {
       const headers = new Headers();
-      headers.set("X-DG-Latency", `${Date.now() - start}`);
-      headers.set("Content-Type", "audio/mp3");
+      headers.set("X-ElevenLabs-Latency", `${Date.now() - start}`);
+      headers.set("Content-Type", "audio/mpeg");
 
       if (!response?.body) {
-        return new NextResponse("Unable to get response from API.", {
+        return new NextResponse("Unable to get response from ElevenLabs API.", {
           status: 500,
         });
       }
@@ -56,6 +56,8 @@ export async function POST(req: NextRequest) {
       return new NextResponse(response.body, { headers });
     })
     .catch((error: any) => {
-      return new NextResponse(error || error?.message, { status: 500 });
+      return new NextResponse(error?.message || "An error occurred", {
+        status: 500,
+      });
     });
 }
