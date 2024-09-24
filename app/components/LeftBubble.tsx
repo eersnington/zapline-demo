@@ -4,6 +4,7 @@ import { MessageAudio } from "./MessageAudio";
 import { MessageHeader } from "./MessageHeader";
 import { MessageMeta } from "./MessageMeta";
 import { TextContent } from "./TextContext";
+import { TextContentAI } from "./TextContextAI";
 
 export const LeftBubble = ({ message }: { message: Message }) => {
   return (
@@ -18,7 +19,7 @@ export const LeftBubble = ({ message }: { message: Message }) => {
               <div className="flex flex-col overflow-hidden pre-overflow-y-auto">
                 <MessageHeader message={message} />
                 <div className="text-sm font-normal pt-2 text-white/80 markdown">
-                  <TextContent text={message.content} />
+                  <TextContentAI text={message.content} message={message} />
                 </div>
               </div>
             </div>

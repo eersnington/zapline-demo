@@ -49,7 +49,7 @@ const MessageAudio = ({
    * Spinner if still waiting for a response
    */
   if (!found) {
-    return <Spinner size={`sm`} />;
+    return <></>;
   }
 
   /**

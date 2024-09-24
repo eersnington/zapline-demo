@@ -28,7 +28,7 @@ import { useDeepgram } from "../context/Deepgram";
 import { useMessageData } from "../context/MessageMetadata";
 import { useMicrophone } from "../context/Microphone";
 import { useAudioStore } from "../context/AudioStore";
-
+ 
 /**
  * Conversation element that contains the conversational AI app.
  * @returns {JSX.Element}

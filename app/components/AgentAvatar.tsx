@@ -19,11 +19,11 @@ export const AgentAvatar = ({
   const foundData = messageData.findLast((item) => item.id === message.id);
 
   if (foundAudio?.model) {
-    return <Avatar src={voiceMap(foundAudio?.model).avatar} />;
+    return <Avatar src={"/aura-asteria-en.svg"} />;
   }
 
   if (foundData?.ttsModel) {
-    return <Avatar src={voiceMap(foundData?.ttsModel).avatar} />;
+    return <Avatar src={"/aura-asteria-en.svg"} />;
   }
 
   return <DgSvg />;

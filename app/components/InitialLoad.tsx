@@ -23,13 +23,6 @@ export const InitialLoad = ({
             <br />
             AI Agent Tech Demo.
           </h2>
-          <div className="flex justify-center mt-4">
-            <ul className="list-disc list-inside marker:text-[#13EF93]">
-              <li className="text-center">Nova-2 Speech-to-Text</li>
-              <li className="text-center">Groq&apos;s llama3-70b-8192</li>
-              <li className="text-center">Aura Text-to-Speech</li>
-            </ul>
-          </div>
           <span className="mt-4 block font-semibold">
             <div className="bg-white text-black rounded px-6 md:px-8 py-3 font-semibold sm:w-fit sm:mx-auto opacity-90">
               {connecting ? (
