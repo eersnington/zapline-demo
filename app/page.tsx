@@ -11,29 +11,55 @@ import CTASection from "./components/landing/CTA";
 import ProductionsSection from "./components/landing/Products";
 
 const storeData = {
-  storeName: "Bacca Bucci",
+  storeName: "Ambrane",
   products: [
     {
       id: 1,
-      name: "Midnight Black Tee",
-      price: 24.99,
-      image: "/placeholder.svg",
+      name: "Aerosync Snap",
+      description:
+        "Magsag Wireless Powerbank for iPhones. 10000mAh Magsafe Powerbank | 15W Wireless, 22.5W Wired Output | Qi Charging, LED Indicators",
+      price: 1599,
+      image: "/ambrane/aerosync.png",
     },
     {
       id: 2,
-      name: "Shadow Slim Jeans",
-      price: 59.99,
-      image: "/placeholder.svg",
+      name: "100W C to C Cable",
+      description: "C to C Data and Charging Cable",
+      price: 399,
+      image: "/ambrane/c2c.png",
     },
     {
       id: 3,
-      name: "Raven Leather Jacket",
-      price: 149.99,
-      image: "/placeholder.svg",
+      name: "Powerlit 30",
+      description:
+        "Small/Mini 33w Fast Charging Pocket Power Bank | 33W BoostedSpeed™ | 10000mah Battery Capacity",
+      price: 1999,
+      image: "/ambrane/powerlit30.png",
     },
-    { id: 4, name: "Twilight Dress", price: 49.99, image: "/placeholder.svg" },
-    { id: 5, name: "Onyx Sneakers", price: 79.99, image: "/placeholder.svg" },
-    { id: 6, name: "Ebony Watch", price: 129.99, image: "/placeholder.svg" },
+    {
+      id: 4,
+      name: "Powerlit Ultra",
+      description:
+        "25000mAh Power Bank | 33W BoostedSpeed™ | MacBook & Type-C Laptop Charging | Polymer Battery",
+      price: 4999,
+      image: "/ambrane/powerlitultra.png",
+    },
+    {
+      id: 5,
+      name: "RAAP G65",
+      price: 2199,
+      description:
+        "Adapter | MacBook & Type C Laptop Charging | 65W GanMax Technology, Triple Ports | Quick Charge 3.0, Power Delivery Technology",
+      image: "/ambrane/raapg65.png",
+    },
+    {
+      id: 6,
+      name: "Charge 30",
+      description:
+        "Dual Charger USB C and USB A | 30W BoostedSpeed™ | Quick Charge & Power Delivery | Charge Multiple Devices",
+      price: 1099,
+      image: "/ambrane/charge30.png",
+    },
   ],
 };
 
@@ -66,11 +92,10 @@ export default function Component() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
             <div className="w-1/2 pr-8">
               <h1 className="text-5xl font-bold mb-4">
-                Elevate Your Style with Bacca Bucci
+                Power that&apos;s reliable, portable and convenient.
               </h1>
               <p className="text-xl mb-8">
-                Discover our exclusive collection of trendsetting fashion
-                pieces.
+                Ambrane India - Shop Power bank, Cables, and Chargers.
               </p>
               <Button className="bg-black text-[#b8ff29] hover:bg-[#2e2e2e] transition-colors">
                 Shop Now
@@ -79,7 +104,7 @@ export default function Component() {
             <div className="w-1/2">
               <Image
                 src="/hero-image.jpg"
-                alt="Bacca Bucci Hero"
+                alt="Ambrane Hero"
                 width={600}
                 height={400}
                 className="rounded-lg object-cover"

@@ -10,7 +10,13 @@ export default function ProductionsSection({
 }: {
   storeData: {
     storeName: string;
-    products: { id: number; name: string; price: number; image: string }[];
+    products: {
+      id: number;
+      name: string;
+      description: string;
+      price: number;
+      image: string;
+    }[];
   };
   cartItems: number;
   addToCart: () => void;
@@ -22,19 +28,23 @@ export default function ProductionsSection({
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {storeData.products.map((product) => (
-          <Card key={product.id} className="bg-black text-white">
-            <CardContent className="p-4">
-              <Image
-                src={product.image}
-                alt={product.name}
-                width={300}
-                height={300}
-                className="rounded-lg object-cover w-full h-48"
-              />
+          <Card key={product.id} className="bg-black text-white flex flex-col">
+            <CardContent className="p-4 flex-grow">
+              <div className="aspect-square relative overflow-hidden rounded-lg">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
             </CardContent>
             <CardFooter className="flex flex-col items-start p-4">
-              <h3 className="text-lg font-semibold">{product.name}</h3>
-              <p className="text-[#b8ff29] mb-2">${product.price.toFixed(2)}</p>
+              <h3 className="text-xl font-semibold">{product.name}</h3>
+              <h3 className="text-sm font-light my-2">{product.description}</h3>
+              <p className="text-xl text-[#b8ff29] mb-2">
+                ₹{product.price.toFixed(2)}
+              </p>
               <Button
                 onClick={addToCart}
                 className="w-full bg-[#b8ff29] text-black hover:bg-[#a3e625] transition-colors"
