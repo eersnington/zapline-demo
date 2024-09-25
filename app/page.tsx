@@ -103,7 +103,7 @@ export default function Component() {
             </div>
             <div className="w-1/2">
               <Image
-                src="/hero-image.jpg"
+                src="/hero-image.png"
                 alt="Ambrane Hero"
                 width={600}
                 height={400}

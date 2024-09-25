@@ -31,7 +31,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://zaplineai.cloud/"),
-  title: "Zapline AI Voicebot | Demo",
+  title: "Shopify Voicebot Demo Store | ZaplineAI",
   description: `This is a demo of the Zapline AI Voicebot. It is geared to showcase a demo for an E-commerce store.`,
   robots: {
     index: false,
