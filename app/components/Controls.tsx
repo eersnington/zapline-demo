@@ -29,13 +29,8 @@ export const Controls = ({
   const { startMicrophone, stopMicrophone, microphoneOpen } = useMicrophone();
   const { formRef, onKeyDown } = useSubmit();
 
-  useEffect(() => {
-    startMicrophone();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const microphoneToggle = useCallback(
-    async (e: Event) => {
+    async (e: React.MouseEvent) => {
       e.preventDefault();
 
       if (microphoneOpen) {

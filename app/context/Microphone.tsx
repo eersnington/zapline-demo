@@ -23,6 +23,7 @@ type MicrophoneContext = {
   queueSize: number;
   queue: Blob[];
   stream: MediaStream | undefined;
+  initialize: () => Promise<void>;
 };
 
 interface MicrophoneContextInterface {
@@ -37,6 +38,7 @@ const MicrophoneContextProvider = ({
   const [microphone, setMicrophone] = useState<MediaRecorder>();
   const [stream, setStream] = useState<MediaStream>();
   const [microphoneOpen, setMicrophoneOpen] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   const {
     add: enqueueBlob, // addMicrophoneBlob,
@@ -46,8 +48,30 @@ const MicrophoneContextProvider = ({
     queue, // : microphoneBlobs,
   } = useQueue<Blob>([]);
 
+  const initialize = useCallback(async () => {
+    if (isInitialized) return;
+
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          noiseSuppression: true,
+          echoCancellation: true,
+        },
+      });
+
+      setStream(stream);
+      const microphone = new MediaRecorder(stream);
+      setMicrophone(microphone);
+      setIsInitialized(true);
+    } catch (error) {
+      console.error("Error initializing microphone:", error);
+    }
+  }, [isInitialized]);
+
   useEffect(() => {
     async function setupMicrophone() {
+      if (!isInitialized) return;
+
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: {
           noiseSuppression: true,
@@ -62,10 +86,10 @@ const MicrophoneContextProvider = ({
       setMicrophone(microphone);
     }
 
-    if (!microphone) {
+    if (!microphone && isInitialized) {
       setupMicrophone();
     }
-  }, [enqueueBlob, microphone, microphoneOpen]);
+  }, [enqueueBlob, microphone, microphoneOpen, isInitialized]);
 
   useEffect(() => {
     if (!microphone) return;
@@ -86,6 +110,11 @@ const MicrophoneContextProvider = ({
   }, [microphone]);
 
   const startMicrophone = useCallback(() => {
+    if (!isInitialized) {
+      setIsInitialized(true);
+      return;
+    }
+
     if (microphone?.state === "paused") {
       microphone?.resume();
     } else {
@@ -93,7 +122,7 @@ const MicrophoneContextProvider = ({
     }
 
     setMicrophoneOpen(true);
-  }, [microphone]);
+  }, [microphone, isInitialized]);
 
   useEffect(() => {
     const eventer = () =>
@@ -120,6 +149,7 @@ const MicrophoneContextProvider = ({
         queueSize,
         queue,
         stream,
+        initialize,
       }}
     >
       {children}

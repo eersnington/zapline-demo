@@ -7,7 +7,13 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Headphones, MessageSquare, Sparkle } from "lucide-react";
+import {
+  Sparkles,
+  Headphones,
+  MessageSquare,
+  Sparkle,
+  ShoppingCart,
+} from "lucide-react";
 
 export function WelcomeDialog() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,8 +33,7 @@ export function WelcomeDialog() {
             <p className="flex items-center gap-2">
               <span>
                 This demo showcases Zapline&apos;s Alexa-like voicebot for
-                Shopify stores. Our voicebot automates 60% of customer queries
-                and provides 24/7 support.
+                Shopify stores.
               </span>
             </p>
             <div className="bg-gray-900 p-4 rounded-lg">
@@ -50,10 +55,14 @@ export function WelcomeDialog() {
               </ul>
             </div>
             <p className="flex items-center gap-2">
-              <Headphones className="w-6 h-6 text-[#b8ff29] flex-shrink-0" />
+              <ShoppingCart className="w-6 h-6 text-[#b8ff29] flex-shrink-0" />
               <span>
-                For the best experience, we recommend using earbuds or
-                headphones when interacting with the voicebot.
+                {/* Write a messge under here saying that there's an example order to which you can inquire the status of cancel and so on.*/}
+                There&apos;s an example order to which you can inquire the
+                status of, cancel, or return. Try asking{" "}
+                <span className="font-light italic">
+                  &quot;What&apos;s the status of my order?&quot;
+                </span>
               </span>
             </p>
           </DialogDescription>

@@ -28,7 +28,7 @@ import { useDeepgram } from "../context/Deepgram";
 import { useMessageData } from "../context/MessageMetadata";
 import { useMicrophone } from "../context/Microphone";
 import { useAudioStore } from "../context/AudioStore";
- 
+
 /**
  * Conversation element that contains the conversational AI app.
  * @returns {JSX.Element}
@@ -36,7 +36,7 @@ import { useAudioStore } from "../context/AudioStore";
 export default function Conversation({
   isOpen,
 }: {
-  isOpen: boolean;
+  isOpen: boolean; // whether the voicebot component is open
 }): JSX.Element {
   /**
    * Custom context providers
@@ -53,6 +53,7 @@ export default function Conversation({
     removeBlob,
     stream,
   } = useMicrophone();
+  const { initialize } = useMicrophone();
 
   /**
    * Queues
@@ -278,9 +279,10 @@ export default function Conversation({
 
   useEffect(() => {
     if (isOpen) {
+      initialize();
       startConversation();
     }
-  }, [isOpen, startConversation]);
+  }, [isOpen, initialize, startConversation]);
 
   useEffect(() => {
     const onTranscript = (data: LiveTranscriptionEvent) => {
