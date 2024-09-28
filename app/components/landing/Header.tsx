@@ -31,22 +31,10 @@ export default function Header({
             Home
           </Link>
           <Link
-            href="/products"
+            href="https://zapline.vercel.app/"
             className=" hover:text-gray-400 transition-colors"
           >
-            Products
-          </Link>
-          <Link
-            href="/about"
-            className=" hover:text-gray-400 transition-colors"
-          >
-            About
-          </Link>
-          <Link
-            href="/contact"
-            className=" hover:text-gray-400 transition-colors"
-          >
-            Contact
+            Zapline
           </Link>
         </nav>
         <div className="flex items-center space-x-4">

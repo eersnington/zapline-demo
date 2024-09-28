@@ -9,6 +9,7 @@ import Header from "./components/landing/Header";
 import Footer from "./components/landing/Footer";
 import CTASection from "./components/landing/CTA";
 import ProductionsSection from "./components/landing/Products";
+import { WelcomeDialog } from "./components/landing/WelcomeDialog";
 
 const storeData = {
   storeName: "Ambrane",
@@ -67,6 +68,7 @@ export default function Component() {
   const [isClient, setIsClient] = useState(false);
   const [cartItems, setCartItems] = useState(0);
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+  const [showLabel, setShowLabel] = useState(true);
 
   useEffect(() => {
     setIsClient(true);
@@ -78,6 +80,7 @@ export default function Component() {
 
   const toggleChatbot = () => {
     setIsChatbotOpen((prev) => !prev);
+    setShowLabel(false);
   };
 
   if (!isClient) {
@@ -86,6 +89,7 @@ export default function Component() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-black">
+      <WelcomeDialog />
       <Header storeData={storeData} cartItems={cartItems} />
       <main className="flex-grow">
         <section className="py-20">
@@ -123,14 +127,21 @@ export default function Component() {
       </main>
 
       <Footer />
-      <Button
-        className="fixed bottom-4 right-4 rounded-full w-12 h-12 shadow-lg bg-black border-white border-2 text-[#b8ff29] hover:bg-[#1a1a1a] hover:scale-110 duration-300 transition-all"
-        size="icon"
-        onClick={toggleChatbot}
-      >
-        <Mic className="w-6 h-6" />
-        <span className="sr-only">Open voice assistant</span>
-      </Button>
+      <div className="fixed bottom-4 right-4 flex flex-col items-center">
+        {showLabel && (
+          <span className="mb-2 bg-black text-[#b8ff29] px-2 py-1 rounded text-sm whitespace-nowrap animate-bounce">
+            Talk to me here
+          </span>
+        )}
+        <Button
+          className="rounded-full w-12 h-12 shadow-lg bg-black border-white border-2 text-[#b8ff29] hover:bg-[#1a1a1a] hover:scale-110 duration-300 transition-all"
+          size="icon"
+          onClick={toggleChatbot}
+          aria-label="Open voice assistant"
+        >
+          <Mic className="w-6 h-6" />
+        </Button>
+      </div>
       <VoicebotUI
         isOpen={isChatbotOpen}
         onClose={() => setIsChatbotOpen(false)}
