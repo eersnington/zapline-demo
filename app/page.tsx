@@ -129,17 +129,17 @@ export default function Component() {
       <Footer />
       <div className="fixed bottom-4 right-4 flex flex-col items-center">
         {showLabel && (
-          <span className="mb-2 bg-black text-[#b8ff29] px-2 py-1 rounded text-sm whitespace-nowrap animate-bounce">
-            Talk to me here
+          <span className="mb-2 bg-blue-500 text-white px-4 py-2 rounded text-base whitespace-nowrap animate-bounce">
+            Talk to me here!
           </span>
         )}
         <Button
-          className="rounded-full w-12 h-12 shadow-lg bg-black border-white border-2 text-[#b8ff29] hover:bg-[#1a1a1a] hover:scale-110 duration-300 transition-all"
+          className="rounded-full w-16 h-16 shadow-lg bg-black border-white border-2 text-[#b8ff29] hover:bg-[#1a1a1a] hover:scale-110 duration-300 transition-all"
           size="icon"
           onClick={toggleChatbot}
           aria-label="Open voice assistant"
         >
-          <Mic className="w-6 h-6" />
+          <Mic className="w-10 h-10" />
         </Button>
       </div>
       <VoicebotUI
