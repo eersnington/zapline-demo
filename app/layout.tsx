@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
+import { PHProvider } from "./context/PostHogProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 const favorit = localFont({
@@ -44,23 +45,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-dvh">
-      <body
-        className={`h-full dark ${classNames(
-          favorit.variable,
-          inter.className
-        )}`}
-      >
-        <ToastContextProvider>
-          <AudioStoreContextProvider>
-            <NowPlayingContextProvider>
-              <MessageMetadataContextProvider>
-                <DeepgramContextProvider>{children}</DeepgramContextProvider>
-              </MessageMetadataContextProvider>
-            </NowPlayingContextProvider>
-          </AudioStoreContextProvider>
-        </ToastContextProvider>
-      </body>
-    </html>
+    <PHProvider>
+      <html lang="en" className="h-dvh">
+        <body
+          className={`h-full dark ${classNames(
+            favorit.variable,
+            inter.className
+          )}`}
+        >
+          <ToastContextProvider>
+            <AudioStoreContextProvider>
+              <NowPlayingContextProvider>
+                <MessageMetadataContextProvider>
+                  <DeepgramContextProvider>{children}</DeepgramContextProvider>
+                </MessageMetadataContextProvider>
+              </NowPlayingContextProvider>
+            </AudioStoreContextProvider>
+          </ToastContextProvider>
+        </body>
+      </html>
+    </PHProvider>
   );
 }
