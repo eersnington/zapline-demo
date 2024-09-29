@@ -288,6 +288,7 @@ export default function Conversation({
       }, 500);
     } else {
       stopMicrophone();
+      stopAudio();
     }
   }, [isOpen, initialize, startConversation]);
 
