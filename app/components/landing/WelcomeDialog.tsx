@@ -19,7 +19,9 @@ export function WelcomeDialog() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    setIsOpen(true);
+    setTimeout(() => {
+      setIsOpen(true);
+    }, 1000);
   }, []);
 
   return (
