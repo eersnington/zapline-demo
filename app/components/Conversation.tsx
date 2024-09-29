@@ -54,6 +54,7 @@ export default function Conversation({
     stream,
     initialize,
     stopMicrophone,
+    startMicrophone,
   } = useMicrophone();
 
   /**
@@ -282,6 +283,9 @@ export default function Conversation({
     if (isOpen) {
       initialize();
       startConversation();
+      setTimeout(() => {
+        startMicrophone();
+      }, 500);
     } else {
       stopMicrophone();
     }
