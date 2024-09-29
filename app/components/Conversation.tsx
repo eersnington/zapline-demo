@@ -26,7 +26,10 @@ import { RightBubble } from "./RightBubble";
 import { systemContent } from "../lib/constants";
 import { useDeepgram } from "../context/Deepgram";
 import { useMessageData } from "../context/MessageMetadata";
-import { useMicrophone } from "../context/Microphone";
+import {
+  MicrophoneContextProvider,
+  useMicrophone,
+} from "../context/Microphone";
 import { useAudioStore } from "../context/AudioStore";
 
 /**
@@ -47,13 +50,15 @@ export default function Conversation({
   const { addMessageData } = useMessageData();
   const {
     microphoneOpen,
+    stopMicrophone,
+    startMicrophone,
     queue: microphoneQueue,
     queueSize: microphoneQueueSize,
     firstBlob,
     removeBlob,
     stream,
+    initialize,
   } = useMicrophone();
-  const { initialize } = useMicrophone();
 
   /**
    * Queues
@@ -281,6 +286,8 @@ export default function Conversation({
     if (isOpen) {
       initialize();
       startConversation();
+    } else {
+      stopMicrophone();
     }
   }, [isOpen, initialize, startConversation]);
 
@@ -452,54 +459,56 @@ export default function Conversation({
 
   return (
     <>
-      <NextUIProvider className="h-full">
-        <div className="flex h-full antialiased">
-          <div className="flex flex-row h-full w-full overflow-x-hidden">
-            <div className="flex flex-col flex-auto h-full">
-              <div className="flex flex-col justify-between h-full">
-                <div
-                  className={`flex flex-col h-full overflow-hidden ${
-                    initialLoad ? "justify-center" : "justify-end"
-                  }`}
-                >
-                  <div className="grid grid-cols-12 overflow-x-auto gap-y-2">
-                    {initialLoad ? (
-                      <InitialLoad
-                        fn={startConversation}
-                        connecting={!connection}
-                      />
-                    ) : (
-                      <>
-                        {chatMessages.length > 0 &&
-                          chatMessages.map((message, i) => (
-                            <ChatBubble message={message} key={i} />
-                          ))}
+      <MicrophoneContextProvider>
+        <NextUIProvider className="h-full">
+          <div className="flex h-full antialiased">
+            <div className="flex flex-row h-full w-full overflow-x-hidden">
+              <div className="flex flex-col flex-auto h-full">
+                <div className="flex flex-col justify-between h-full">
+                  <div
+                    className={`flex flex-col h-full overflow-hidden ${
+                      initialLoad ? "justify-center" : "justify-end"
+                    }`}
+                  >
+                    <div className="grid grid-cols-12 overflow-x-auto gap-y-2">
+                      {initialLoad ? (
+                        <InitialLoad
+                          fn={startConversation}
+                          connecting={!connection}
+                        />
+                      ) : (
+                        <>
+                          {chatMessages.length > 0 &&
+                            chatMessages.map((message, i) => (
+                              <ChatBubble message={message} key={i} />
+                            ))}
 
-                        {currentUtterance && (
-                          <RightBubble text={currentUtterance}></RightBubble>
-                        )}
+                          {currentUtterance && (
+                            <RightBubble text={currentUtterance}></RightBubble>
+                          )}
 
-                        <div
-                          className="h-16 col-start-1 col-end-13"
-                          ref={messageMarker}
-                        ></div>
-                      </>
-                    )}
+                          <div
+                            className="h-16 col-start-1 col-end-13"
+                            ref={messageMarker}
+                          ></div>
+                        </>
+                      )}
+                    </div>
                   </div>
+                  {!initialLoad && (
+                    <Controls
+                      messages={chatMessages}
+                      handleSubmit={handleSubmit}
+                      handleInputChange={handleInputChange}
+                      input={input}
+                    />
+                  )}
                 </div>
-                {!initialLoad && (
-                  <Controls
-                    messages={chatMessages}
-                    handleSubmit={handleSubmit}
-                    handleInputChange={handleInputChange}
-                    input={input}
-                  />
-                )}
               </div>
             </div>
           </div>
-        </div>
-      </NextUIProvider>
+        </NextUIProvider>
+      </MicrophoneContextProvider>
     </>
   );
 }

@@ -68,28 +68,28 @@ const MicrophoneContextProvider = ({
     }
   }, [isInitialized]);
 
-  useEffect(() => {
-    async function setupMicrophone() {
-      if (!isInitialized) return;
+  // useEffect(() => {
+  //   async function setupMicrophone() {
+  //     if (!isInitialized) return;
 
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: {
-          noiseSuppression: true,
-          echoCancellation: true,
-        },
-      });
+  //     const stream = await navigator.mediaDevices.getUserMedia({
+  //       audio: {
+  //         noiseSuppression: true,
+  //         echoCancellation: true,
+  //       },
+  //     });
 
-      setStream(stream);
+  //     setStream(stream);
 
-      const microphone = new MediaRecorder(stream);
+  //     const microphone = new MediaRecorder(stream);
 
-      setMicrophone(microphone);
-    }
+  //     setMicrophone(microphone);
+  //   }
 
-    if (!microphone && isInitialized) {
-      setupMicrophone();
-    }
-  }, [enqueueBlob, microphone, microphoneOpen, isInitialized]);
+  //   if (!microphone && isInitialized) {
+  //     setupMicrophone();
+  //   }
+  // }, [enqueueBlob, microphone, microphoneOpen, isInitialized]);
 
   useEffect(() => {
     if (!microphone) return;
