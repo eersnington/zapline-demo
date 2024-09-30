@@ -290,7 +290,14 @@ export default function Conversation({
       stopMicrophone();
       stopAudio();
     }
-  }, [isOpen, initialize, startConversation]);
+  }, [
+    isOpen,
+    initialize,
+    startConversation,
+    startMicrophone,
+    stopMicrophone,
+    stopAudio,
+  ]);
 
   useEffect(() => {
     const onTranscript = (data: LiveTranscriptionEvent) => {
