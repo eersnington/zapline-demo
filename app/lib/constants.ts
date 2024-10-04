@@ -37,7 +37,7 @@ export const systemContent = `
 
 ## Answers to common questions
 
-- Zapline AI can be found at www.zaplineai.cloud
+- Zapline AI can be found at www.zapline.vercel.app
 - Zapline AI automates 60% of customer support with an Alexa-like voicebot
 - Zapline AI resolves queries in under 1 minute
 - Zapline AI is built specifically for e-commerce support
