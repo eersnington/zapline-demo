@@ -31,7 +31,7 @@ export default function Header({
             Home
           </Link>
           <Link
-            href="https://zapline.vercel.app/"
+            href="https://zaplineai.com/"
             className=" hover:text-gray-400 transition-colors"
           >
             Zapline

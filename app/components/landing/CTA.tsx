@@ -15,7 +15,7 @@ export default function CTASection() {
         </p>
         <Button
           className="rounded-full text-xl p-6 bg-[#b8ff29] text-black hover:bg-[#a3e625] transition-colors"
-          onClick={() => window.open("https://zapline.vercel.app", "_blank")}
+          onClick={() => window.open("https://zaplineai.com", "_blank")}
         >
           Learn More About Zapline AI
         </Button>

@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="flex items-center space-x-4 mb-4 md:mb-0">
           <span className="text-gray-800">Follow us:</span>
           <a
-            href="https://zapline.vercel.app"
+            href="https://zaplineai.com"
             aria-label="Website"
             className="text-gray-800 hover:text-gray-700 transition-colors"
           >
@@ -33,7 +33,7 @@ export default function Footer() {
         </div>
         <div className="text-gray-800 text-sm">
           <Link
-            href="https://zapline.vercel.app"
+            href="https://zaplineai.com"
             className=" hover:text-gray-700 transition-colors"
           >
             © {new Date().getFullYear()} {"Zapline AI"}. All rights reserved.
