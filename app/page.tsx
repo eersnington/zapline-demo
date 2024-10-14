@@ -112,11 +112,12 @@ export default function Component() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
             <div className="w-1/2 pr-8">
               <h1 className="text-5xl font-bold mb-4">
-                Power that&apos;s reliable, portable and convenient.
+                {/* Welcome to Ambrane India */}
+                Welcome to Oracura India - Leading Oral Care Brand
               </h1>
               <p className="text-xl mb-8">
                 {/* Ambrane India - Shop Power bank, Cables, and Chargers. */}
-                Oracura - Shop
+                Shop Smart Water Flossers, Toothbrushes, and Oral Care Products.
               </p>
               <Button className="bg-black text-[#b8ff29] hover:bg-[#2e2e2e] transition-colors">
                 Shop Now
@@ -124,7 +125,7 @@ export default function Component() {
             </div>
             <div className="w-1/2">
               <Image
-                src="/hero-image.png"
+                src="/oracura/OC150.png"
                 alt="Ambrane Hero"
                 width={600}
                 height={400}
