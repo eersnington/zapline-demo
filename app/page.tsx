@@ -113,7 +113,7 @@ export default function Component() {
             <div className="w-1/2 pr-8">
               <h1 className="text-5xl font-bold mb-4">
                 {/* Welcome to Ambrane India */}
-                Welcome to Oracura India - Indi&apos; Leading Oral Care Brand
+                Welcome to Oracura India - India&apos;s Leading Oral Care Brand
               </h1>
               <p className="text-xl mb-8">
                 {/* Ambrane India - Shop Power bank, Cables, and Chargers. */}
