@@ -15,6 +15,8 @@ export async function POST(req: NextRequest) {
 
   let text = message.content;
 
+  console.log("Text to be spoken:", text);
+
   text = text
     .replaceAll("¡", "")
     .replaceAll("https://", "")
