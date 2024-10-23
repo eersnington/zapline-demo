@@ -48,14 +48,6 @@ const nextConfig = {
     return config;
   },
   reactStrictMode: false,
-  async rewrites() {
-    return [
-      {
-        source: "/api/:path*",
-        destination: "https://demo.zaplineai.com/:path*",
-      },
-    ];
-  },
   async headers() {
     return [
       {
