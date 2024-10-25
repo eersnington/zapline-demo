@@ -3,9 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Minus, Plus, ShoppingCart } from "lucide-react";
+import { ArrowLeft, Mic, Minus, Plus, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import VoicebotUI from "./VoicebotUI";
 
 export default function ProductPage({
   product,
@@ -19,6 +20,8 @@ export default function ProductPage({
   } | null;
 }) {
   const [quantity, setQuantity] = useState(1);
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+  const [showLabel, setShowLabel] = useState(true);
   const router = useRouter();
 
   if (!product) {
@@ -28,6 +31,11 @@ export default function ProductPage({
       </div>
     );
   }
+
+  const toggleChatbot = () => {
+    setIsChatbotOpen((prev) => !prev);
+    setShowLabel(false);
+  };
 
   const handleAddToCart = () => {
     console.log(`Added ${quantity} of ${product.name} to cart`);
@@ -67,7 +75,6 @@ export default function ProductPage({
                   <p className="text-4xl font-extrabold text-[#b8ff29] mb-4 bg-black rounded-xl px-4 py-2 inline-block">
                     ₹{product.price.toFixed(2)}
                   </p>
-
                   <p className="text-gray-600 mb-8">{product.description}</p>
                 </div>
                 <div>
@@ -111,6 +118,26 @@ export default function ProductPage({
             </div>
           </CardContent>
         </Card>
+        <div className="fixed bottom-16 right-4 flex items-center">
+          {showLabel && (
+            <span className="mr-4 bg-black text-white px-4 py-2 rounded text-base whitespace-nowrap animate-pulse">
+              Want to know a cool fact about{" "}
+              <span className="text-[#b8ff29]">{product.name}</span>?
+            </span>
+          )}
+          <Button
+            className="rounded-full w-16 h-16 shadow-lg bg-black border-white border-2 text-[#b8ff29] hover:bg-[#1a1a1a] hover:scale-110 duration-300 transition-all"
+            size="icon"
+            onClick={toggleChatbot}
+            aria-label="Open voice assistant"
+          >
+            <Mic className="w-10 h-10" />
+          </Button>
+        </div>
+        <VoicebotUI
+          isOpen={isChatbotOpen}
+          onClose={() => setIsChatbotOpen(false)}
+        />
       </div>
     </div>
   );

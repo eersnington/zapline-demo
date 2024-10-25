@@ -79,7 +79,7 @@ export default function Component() {
       <div className="fixed bottom-4 right-4 flex flex-col items-center">
         {showLabel && (
           <span className="mb-2 bg-blue-500 text-white px-4 py-2 rounded text-base whitespace-nowrap animate-bounce">
-            Chat with us here!
+            Talk with us here!
           </span>
         )}
         <Button
