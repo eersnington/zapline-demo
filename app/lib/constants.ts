@@ -118,48 +118,8 @@ export const systemContent = `
 
 export const greetings = [
   {
-    text: "%s! Welcome to Beauty Chemist. How can I assist you with beauty essentials today?",
-    strings: [contextualHello()],
-  },
-  {
-    text: "%s. Our Diwali sale is coming up. Would you like to hear about our festive deals on skincare and makeup?",
-    strings: [contextualHello()],
-  },
-  {
-    text: "%s! Interested in learning about our latest beauty technologies? I'd be happy to share some information.",
-    strings: [contextualHello()],
-  },
-  {
-    text: "%s. Welcome to Beauty Chemist. Are you looking for any particular type of beauty product today?",
-    strings: [contextualHello()],
-  },
-  {
-    text: "%s! We've just updated our catalogue. Would you like to hear about our new skincare products?",
-    strings: [contextualHello()],
-  },
-  {
-    text: "%s. Shopping for a beauty gift? I can suggest some popular items from our collection of skincare and makeup.",
-    strings: [contextualHello()],
-  },
-  {
-    text: "%s. Looking for beauty solutions that fit your lifestyle? I can tell you about our skincare and makeup options.",
-    strings: [contextualHello()],
-  },
-  {
-    text: "%s! Would you like to hear about our most popular items? I can share our customer-favorite skincare products.",
-    strings: [contextualHello()],
-  },
-  {
-    text: "%s. I can tell you about our loyalty program if you're interested. Would you like to hear the details?",
-    strings: [contextualHello()],
-  },
-  {
-    text: "%s! Are you looking for a specific type of skincare solution? I can help you navigate our product range.",
-    strings: [contextualHello()],
-  },
-  {
-    text: "%s. Welcome to Beauty Chemist. How may I assist you in finding the right products for glowing skin and beauty today?",
-    strings: [contextualHello()],
+    text: "%sOur hydrating face wash with hyaluronic acid and natural extracts is safe for oily skin. It's also paraben free. Did you know we offer this and a vitamin c serum as a combo at 15% off?",
+    strings: [""],
   },
 ];
 
